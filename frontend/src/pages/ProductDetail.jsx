@@ -8,7 +8,7 @@ export default function ProductDetail({ cartItems, setCartItems }) {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + "/product/" + id)
+    fetch(import.meta.env.VITE_API_URL + "/product/" + id)
       .then((res) => res.json())
       .then((res) => setProduct(res.product));
   }, []);
@@ -17,7 +17,7 @@ export default function ProductDetail({ cartItems, setCartItems }) {
     const itemExist = cartItems.find((item) => item.product._id == product._id);
     if (!itemExist) {
       const newItem = { product, qty };
-      setCartItems( [...cartItems, newItem]);
+      setCartItems([...cartItems, newItem]);
       toast.success("Cart Item added succesfully!");
     }
   }
